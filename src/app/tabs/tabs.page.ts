@@ -7,6 +7,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  tab: string = "tab1";
+  constructor() { }
 
+  changeTab(tab) {
+    this.tab = tab;
+  }
 }
