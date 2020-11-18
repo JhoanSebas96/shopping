@@ -1,34 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
-import { NavController, IonInfiniteScroll } from "@ionic/angular";
+import { Component, OnInit, ViewChild } from '@angular/core';
 import * as firebase from "firebase";
-import 'firebase/firestore';
-import 'firebase/database';
-@Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
-})
-export class HomePage {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-  products: Array<any> = [];
-  lastKey: string = null;
+import { IonInfiniteScroll, NavController } from '@ionic/angular';
 
-  constructor(public nav: NavController,) {
-    firebase.firestore().collection("products").orderBy("category").limit(30).onSnapshot(snap => {
-      snap.forEach((doc) =>{
+@Component({
+  selector: 'app-category',
+  templateUrl: './category.page.html',
+  styleUrls: ['./category.page.scss'],
+})
+export class CategoryPage implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  categoryName: string;
+  products: Array<any> = [];
+  lastKey: string;
+
+  constructor(public nav:NavController) {
+    this.categoryName = sessionStorage.getItem("categoryName");
+
+    firebase.firestore().collection("products").where("category", "==", this.categoryName).limit(20).onSnapshot( snap =>{
+      snap.forEach( doc => {
         this.lastKey = doc.id;
-        console.log(doc.id, "=>", doc.data());
-        this.products.push({ id: doc.id, ...doc.data()})
-        
+        this.products.push({id: doc.id, ...doc.data() });
       })
     })
   }
 
+  ngOnInit() {
+  }
+
   loadData(event) {
-    
-    firebase.database().ref("baseshop-96e56/").orderByKey().limitToFirst(50).once("value", snap => {
+    firebase.database().ref("products").orderByKey().startAt(this.lastKey).limitToFirst(50).once("value", snap => {
       event.target.complete();
-      console.log(firebase.database)
 
       if (snap.numChildren() == 1) {
         this.infiniteScroll.disabled = true;
@@ -46,7 +47,7 @@ export class HomePage {
     })
   }
 
-  viewProduct(id, name, img, price, company,category) {
+  viewProduct(id, name, img, price, company, category) {
     sessionStorage.setItem("productId", id);
     sessionStorage.setItem("productName", name);
     sessionStorage.setItem("productImg", img);
@@ -54,6 +55,5 @@ export class HomePage {
     sessionStorage.setItem("productCompany", company);
     sessionStorage.setItem("productCategory", category);
     this.nav.navigateForward("/product-view/" + id);
-    console.log(this.viewProduct)
   }
 }

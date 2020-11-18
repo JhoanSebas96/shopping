@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Profile</ion-title>
+    <ion-title>Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,12 +16,8 @@
   </ion-item>
   <ion-item lines="none" (click)="viewCart()">
     <ion-icon name="cart-outline" slot="start"></ion-icon>
-    <ion-label>Cart</ion-label>
+    <ion-label>Carrito</ion-label>
     <ion-badge slot="end" color="primary" mode="md" *ngIf="cart.length > 0">{{cart.length}}</ion-badge>
   </ion-item>
 
-  <ion-item lines="none" (click)="viewOrders()">
-    <ion-icon name="file-tray-full-outline" slot="start"></ion-icon>
-    <ion-label>My Orders</ion-label>
-  </ion-item>
 </ion-content>

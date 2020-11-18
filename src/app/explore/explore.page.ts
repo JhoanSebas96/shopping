@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import * as firebase from "firebase";
 
 @Component({
   selector: 'app-explore',
@@ -10,25 +9,29 @@ import * as firebase from "firebase";
 export class ExplorePage implements OnInit {
   categories: Array<any> = [
     {
-      name: "Lifestyle",
-      icon: "heart-outline",
-      color: "danger"
+      title: "Periféricos",
+      name: "perifericos",
+      icon: "game-controller-outline",
+      color: "dark"
     },
     {
-      name: "Entertainment",
-      icon: "tv-outline",
-      color: "success"
+      title: "Componentes",
+      name: "componentes",
+      icon: "hardware-chip-outline",
+      color: "dark"
     }
     ,
     {
-      name: "Fitness",
-      icon: "walk-outline",
-      color: "warning"
+      title: "Portátiles",
+      name: "portatiles",
+      icon: "laptop-outline",
+      color: "dark"
     },
     {
-      name: "Medical",
-      icon: "medical-outline",
-      color: "secondary"
+      title: "Monitores",
+      name: "monitores",
+      icon: "desktop-outline",
+      color: "dark"
     }
   ]
   constructor(public nav: NavController) { }
@@ -36,10 +39,9 @@ export class ExplorePage implements OnInit {
   ngOnInit() {
   }
 
-  exploreCategory(name) {
-    sessionStorage.setItem("categoryName", name);
+  exploreCategory(title) {
+    sessionStorage.setItem("categoryName", title);
     this.nav.navigateForward("/category");
   }
 
 }
-

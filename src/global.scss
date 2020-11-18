@@ -24,3 +24,44 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+
+* {
+  --backdrop-opacity: var(--ion-backdrop-opacity, 0.6) !important;
+  user-select: none;
+}
+
+
+.popover-content.sc-ion-popover-md{
+  width: max-content;
+  max-width: 95%;
+  display: block;
+  margin:0 auto;
+}
+
+.highlight {
+  color: var(--ion-color-primary);
+}
+
+* {
+  font-weight: bold;
+}
+
+ion-item {
+  ion-label {
+      h2,
+      p {
+          font-weight: bold !important;
+      }
+  }
+}
+
+.center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 10;
+  text-align: center;
+}

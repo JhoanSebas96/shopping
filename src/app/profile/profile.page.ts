@@ -22,7 +22,6 @@ export class ProfilePage implements OnInit {
       this.cart = JSON.parse(localStorage.getItem("carts"));
     }
 
-    //Keep track of CART DATA
     setInterval(() => {
       if (localStorage.getItem("carts")) {
         this.cart = JSON.parse(localStorage.getItem("carts"));
@@ -37,7 +36,4 @@ export class ProfilePage implements OnInit {
     this.nav.navigateForward("/cart");
   }
 
-  viewOrders() {
-    this.nav.navigateForward("/my-orders");
-  }
 }

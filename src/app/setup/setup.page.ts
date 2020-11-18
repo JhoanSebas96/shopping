@@ -15,20 +15,18 @@ export class SetupPage implements OnInit {
   ngOnInit() {
   }
 
-  finishSetup(){
+  finishSetup() {
     var name = (<HTMLInputElement>document.getElementById("name")).value;
     this.spin = true;
 
     var user = firebase.auth().currentUser;
     user.updateProfile({
       displayName: name
-    }).then(()=> {
-      localStorage.setItem("name",name);
+    }).then(() => {
+      localStorage.setItem("name", name);
       this.nav.navigateRoot("/");
     }).catch(err => {
       alert(err);
     })
-
   }
-
 }

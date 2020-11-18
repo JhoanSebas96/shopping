@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      CompuShop
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{categoryName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,7 +26,7 @@
               {{product.name}}
             </h2>
             <p>
-              {{product.price | currency: 'COP $'}}
+              Precio: {{product.price | currency: 'COP $'}}
             </p>
             <ion-note>{{product.company}}</ion-note>
           </ion-label>

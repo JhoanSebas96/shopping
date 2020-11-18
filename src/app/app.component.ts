@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
-import { NavController, Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import * as firebase from "firebase";
-
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -17,7 +16,6 @@ export class AppComponent {
     private statusBar: StatusBar, public nav: NavController,
   ) {
     this.initializeApp();
-    
     const firebaseConfig = {
       apiKey: "AIzaSyDnd7XmiG3h268aufew89Nrl2Hu0DSrPT4",
       authDomain: "baseshop-96e56.firebaseapp.com",
@@ -25,7 +23,7 @@ export class AppComponent {
       projectId: "baseshop-96e56",
       storageBucket: "baseshop-96e56.appspot.com",
       messagingSenderId: "46336553006",
-      appId: "1:46336553006:web:c263f4312589ba3b30efbf"
+      appId: "1:46336553006:web:571b3c89b54d918630efbf"
     };
     firebase.initializeApp(firebaseConfig);
   }
@@ -34,10 +32,12 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.checkUser();
     });
   }
 
-  checkUser(){
+  checkUser() {
     if(localStorage.getItem("uid")){
       this.nav.navigateRoot("/");
     }
